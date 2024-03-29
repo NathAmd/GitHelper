@@ -137,7 +137,7 @@ read -p "Press any key to resume ..."
 fi
 }
 
-CmdTuto(){
+CmdCheckUpdate(){
 cd "$(dirname $0)"
 git pull
 cd ""
