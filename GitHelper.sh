@@ -143,7 +143,7 @@ CmdRestore(){
 if [ $my_var -eq 7 ]
 then
 echo -e "${BYellow}"
-git restore -m
+git restore :/
 echo -e "${co}"
 read -p "Press any key to resume ..."
 fi
