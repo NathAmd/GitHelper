@@ -138,18 +138,6 @@ read -p "Press any key to resume ..."
 fi
 }
 
-CmdCheckUpdate(){
-echo -e "${BYellow}"
-cd "$(dirname $0)"
-git pull
-cd ""
-echo -e "${co}"
-echo ""
-echo -e "${BRed}If update, restart for changement is applied${co}"
-echo ""
-echo ""
-read -p "Press any key to resume ..."
-}
 
 CmdTuto(){
 if [ $my_var -eq 9 ]
