@@ -141,6 +141,8 @@ CmdTuto(){
 cd "$(dirname $0)"
 git pull
 cd ""
+echo "If update, restart for changement"
+read -p "Press any key to resume ..."
 }
 
 CmdTuto(){
