@@ -52,7 +52,7 @@ if [ -d "$PWD/.git" ]
 then
 echo -e "[${BGreen}2${co}] -> pull ( Get file on the server )"
 echo -e "[${BGreen}3${co}] -> status ( Get if files changed )"
-echo -e "[${BGreen}4${co}] -> commit all file ( Add all your modification )"
+echo -e "[${BGreen}4${co}] -> commit all file ( Add ${BGreen}all${co} your modification )"
 echo -e "[${BGreen}5${co}] -> push ( Send your modification on the server => ${BRed}always pull before${co} )"
 echo -e "[${BRed}6${co}] -> Advance -> Auto ( pull to push step )"
 fi
