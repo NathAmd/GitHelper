@@ -30,7 +30,7 @@ BWhite='\033[1;37m'       # White
 
 Ini() {
 clear
-echo -e "${BCyan}---------- Git Helper ${BBlue}v0.5.5${BCyan} ----------${co}"
+echo -e "${BCyan}---------- Git Helper ${BBlue}v0.6.0${BCyan} ----------${co}"
 echo -e "by: ${BCyan}styloxis${co}"
 echo ""
 echo ""
