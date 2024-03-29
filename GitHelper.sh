@@ -138,6 +138,12 @@ fi
 }
 
 CmdTuto(){
+cd "$(dirname $0)"
+git pull
+cd ""
+}
+
+CmdTuto(){
 if [ $my_var -eq 9 ]
 then
 echo -e "${BGreen} - + _ + - - - - - - [ T U T O ] - - - - - - + _ + - ${co}"
@@ -167,9 +173,11 @@ read -p "Press any key to resume ..."
 fi
 }
 
+CmdCheckUpdate
 
 while [ $nbr -eq 0 ]
 do
+
 
 Ini
 
