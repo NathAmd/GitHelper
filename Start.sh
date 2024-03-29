@@ -33,10 +33,9 @@ CmdCheckUpdate(){
 echo -e "${BYellow}"
 cd "$(dirname $0)"
 git pull
-cd ""
 echo -e "${co}"
 
-source "$(dirname $0)/GitHelper.sh"
+source "GitHelper.sh"
 }
 
 CmdCheckUpdate
