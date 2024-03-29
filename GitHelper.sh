@@ -29,9 +29,9 @@ BWhite='\033[1;37m'       # White
 
 Ini() {
 clear
-echo -e "${BCyan}---------- Git Helper ----------${co}"
+echo -e "${BCyan}---------- Git Helper v0.5 ----------${co}"
 echo -e "by: ${BCyan}styloxis${co}"
-echo "$(dirname $0)"
+echo ""
 echo ""
 echo ""
 echo -e "Directory: ${BBlue}"
