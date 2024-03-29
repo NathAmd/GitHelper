@@ -150,6 +150,7 @@ fi
 }
 
 
+
 CmdTuto(){
 if [ $my_var -eq 9 ]
 then
@@ -201,6 +202,7 @@ CmdStatus
 CmdCommit
 CmdPush
 CmdAuto
+CmdRestore
 fi
 CmdTuto
 
