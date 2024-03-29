@@ -180,7 +180,7 @@ read -p "Press any key to resume ..."
 fi
 }
 
-CmdCheckUpdate
+#CmdCheckUpdate
 
 while [ $nbr -eq 0 ]
 do
