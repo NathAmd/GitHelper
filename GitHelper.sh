@@ -138,10 +138,15 @@ fi
 }
 
 CmdCheckUpdate(){
+echo -e "${BYellow}"
 cd "$(dirname $0)"
 git pull
 cd ""
-echo "If update, restart for changement"
+echo -e "${co}"
+echo ""
+echo -e "${BRed}If update, restart for changement is applied${co}"
+echo ""
+echo ""
 read -p "Press any key to resume ..."
 }
 
