@@ -6,7 +6,7 @@ cd
 nbr=0
 
 # Reset
-co='\033[0m'       # Text Reset
+co='\033[0;0m'       # Text Reset
 
 # Regular Colors
 Black='\033[0;30m'        # Black
@@ -20,17 +20,17 @@ White='\033[0;37m'        # White
 
 # Bold
 BBlack='\033[1;30m'       # Black
-BRed='\033[3;31m'         # Red
+BRed='\033[1;31m'         # Red
 BGreen='\033[1;32m'       # Green
 BYellow='\033[1;33m'      # Yellow
 BBlue='\033[1;34m'        # Blue
 BPurple='\033[1;35m'      # Purple
-BCyan='\033[3;36m'        # Cyan
+BCyan='\033[1;36m'        # Cyan
 BWhite='\033[1;37m'       # White
 
 Ini() {
 clear
-echo -e "${BCyan}---------- Git Helper v0.5.4 ----------${co}"
+echo -e "${BCyan}---------- Git Helper ${BBlue}v0.5.5${BCyan} ----------${co}"
 echo -e "by: ${BCyan}styloxis${co}"
 echo ""
 echo ""
@@ -55,6 +55,7 @@ echo -e "[${BGreen}3${co}] -> status ( Get if files changed )"
 echo -e "[${BGreen}4${co}] -> commit all file ( Add ${BGreen}all${co} your modification )"
 echo -e "[${BGreen}5${co}] -> push ( Send your modification on the server => ${BRed}always pull before${co} )"
 echo -e "[${BRed}6${co}] -> Advance -> Auto ( pull to push step )"
+echo -e "[${BRed}7${co}] -> WARNING -> Revert changement ( Good if you have file conflict )"
 fi
 echo ""
 echo ""
@@ -77,7 +78,7 @@ fi
 CmdCloneRepository(){
 if [ $my_var -eq 1 ]
 then
-echo "Tap link or ssh"
+echo "Tap ${BGreen}link${co} or ${BGreen}ssh${co}"
 read my_var
 git clone $my_var
 echo ""
@@ -133,6 +134,16 @@ git pull
 git add -A
 git commit -m "Auto push"
 git push
+echo -e "${co}"
+read -p "Press any key to resume ..."
+fi
+}
+
+CmdRestore(){
+if [ $my_var -eq 7 ]
+then
+echo -e "${BYellow}"
+git restore -m
 echo -e "${co}"
 read -p "Press any key to resume ..."
 fi
