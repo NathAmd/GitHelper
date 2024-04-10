@@ -106,7 +106,7 @@ CmdPull(){
 if [ $my_var -eq 2 ]
 then
 git fetch
-git pull
+git pull --all
 echo ""
 read -p "Press any key to resume ..."
 fi
@@ -168,8 +168,8 @@ fi
 }
 
 CmdGetBranch(){
-    echo ""
-    echo "---- BRANCH LIST ----"
+echo ""
+echo "---- BRANCH LIST ----"
 git branch --list
 echo "---------------------"
 echo ""
