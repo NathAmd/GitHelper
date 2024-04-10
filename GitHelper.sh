@@ -30,7 +30,7 @@ BWhite='\033[1;37m'       # White
 
 Ini() {
 clear
-echo -e "${BCyan}---------- Git Helper ${BBlue}v0.7.0${BCyan} ----------${co}"
+echo -e "${BCyan}---------- Git Helper ${BBlue}v0.7.1${BCyan} ----------${co}"
 echo -e "by: ${BCyan}styloxis${co}"
 echo ""
 echo ""
@@ -67,12 +67,14 @@ then
 echo -e "[${BGreen}8${co}] -> create branch"
 echo -e "[${BGreen}9${co}] -> switch branch"
 echo -e "[${BGreen}10${co}] -> merge branch"
-echo -e "[${BGreen}11${co}] -> delete branch"
-echo -e "[${BRed}12${co}] -> delete branch ${BRed}(FORCED)${co}"
+echo -e "[${BGreen}11${co}] -> delete branch on local"
+echo -e "[${BGreen}12${co}] -> delete branch on the server"
+echo -e "[${BRed}13${co}] -> delete branch on local ${BRed}(FORCED)${co}"
+echo -e "[${BBlue}14${co}] -> Upload branch for push with that ${BBlue}( just one time )${co} "
 fi
 echo ""
 echo ""
-echo -e "[${BGreen}9${co}] -> tuto (get all step for git)"
+echo -e "[${BGreen}99${co}] -> tuto (get all step for git)"
 echo "- - - - - - - - - - - - - - -"
 echo "Tap number of line command: "
 echo ""
@@ -198,8 +200,21 @@ CmdPressForPass
 fi
 }
 
-CmdBranchForceDelete(){
+CmdBranchDeleteOnline(){
     if [ $my_var -eq 12 ]
+then
+git branch -r
+echo ""
+echo "tap the name of the branch for delete"
+echo ""
+read my_var
+git push origin --delete $my_var
+CmdPressForPass
+fi
+}
+
+CmdBranchForceDelete(){
+    if [ $my_var -eq 13 ]
 then
 CmdGetBranch
 echo ""
@@ -240,6 +255,20 @@ CmdPressForPass
 fi
 }
 
+CmdBranchUpload(){
+if [ $my_var -eq 14 ]
+then
+echo ""
+echo "tap the name of the branch for upload"
+echo ""
+CmdGetBranch
+echo ""
+read my_var
+git push -u origin $my_var
+CmdPressForPass
+fi
+}
+
 CmdPressForPass(){
 echo ""
 echo ""
@@ -248,7 +277,7 @@ read -p "Press any key to resume ..."
 }
 
 CmdTuto(){
-if [ $my_var -eq 9 ]
+if [ $my_var -eq 99 ]
 then
 echo -e "${BGreen} - + _ + - - - - - - [ T U T O ] - - - - - - + _ + - ${co}"
 echo ""
@@ -304,6 +333,8 @@ CmdBranchDelete
 CmdBranchForceDelete
 CmdBranchSwitch
 CmdBranchMerge
+CmdBranchUpload
+CmdBranchDeleteOnline
 fi
 CmdTuto
 
