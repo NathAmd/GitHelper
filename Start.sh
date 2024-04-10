@@ -32,6 +32,7 @@ BWhite='\033[1;37m'       # White
 CmdCheckUpdate(){
 echo -e "${BYellow}"
 cd "$(dirname $0)"
+git fetch
 git pull
 echo -e "${co}"
 

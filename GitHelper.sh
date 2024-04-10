@@ -30,7 +30,7 @@ BWhite='\033[1;37m'       # White
 
 Ini() {
 clear
-echo -e "${BCyan}---------- Git Helper ${BBlue}v0.6.0${BCyan} ----------${co}"
+echo -e "${BCyan}---------- Git Helper ${BBlue}v0.7.0${BCyan} ----------${co}"
 echo -e "by: ${BCyan}styloxis${co}"
 echo ""
 echo ""
@@ -45,7 +45,9 @@ else
 echo -e "${BRed} *** /!\  FOLDER IS NOT VALID  /!\ *** ${co}"
 fi
 echo ""
-echo ""
+echo -e "Current branch:${BBlue}"
+git rev-parse --abbrev-ref HEAD
+echo -e "${co}"
 echo -e "[${BGreen}0${co}] -> Set directory of git folder ( If exist else clone with command [${BGreen}1${co}] )"
 echo -e "[${BGreen}1${co}] -> Clone repository with ${BGreen}link${co} or ${BGreen}ssh${co}"
 if [ -d "$PWD/.git" ]
@@ -59,9 +61,21 @@ echo -e "[${BRed}7${co}] -> WARNING -> Revert changement ( Good if you have file
 fi
 echo ""
 echo ""
+echo ""
+if [ -d "$PWD/.git" ]
+then
+echo -e "[${BGreen}8${co}] -> create branch"
+echo -e "[${BGreen}9${co}] -> switch branch"
+echo -e "[${BGreen}10${co}] -> merge branch"
+echo -e "[${BGreen}11${co}] -> delete branch"
+echo -e "[${BRed}12${co}] -> delete branch ${BRed}(FORCED)${co}"
+fi
+echo ""
+echo ""
 echo -e "[${BGreen}9${co}] -> tuto (get all step for git)"
 echo "- - - - - - - - - - - - - - -"
 echo "Tap number of line command: "
+echo ""
 read my_var
 }
 
@@ -78,7 +92,7 @@ fi
 CmdCloneRepository(){
 if [ $my_var -eq 1 ]
 then
-echo "Tap ${BGreen}link${co} or ${BGreen}ssh${co}"
+echo  -e "Tap ${BGreen}link${co} or ${BGreen}ssh${co}"
 read my_var
 git clone $my_var
 echo ""
@@ -89,6 +103,7 @@ fi
 CmdPull(){
 if [ $my_var -eq 2 ]
 then
+git fetch
 git pull
 echo ""
 read -p "Press any key to resume ..."
@@ -100,7 +115,7 @@ if [ $my_var -eq 3 ]
 then
 git status
 echo ""
-read -p "Press any key to resume ..."
+CmdPressForPass
 fi
 }
 
@@ -113,7 +128,7 @@ echo ""
 git add -A
 git commit -m $my_var
 echo ""
-read -p "Press any key to resume ..."
+CmdPressForPass
 fi
 }
 
@@ -122,7 +137,7 @@ if [ $my_var -eq 5 ]
 then
 git push
 echo ""
-read -p "Press any key to resume ..."
+CmdPressForPass
 fi
 }
 
@@ -130,12 +145,13 @@ CmdAuto(){
 if [ $my_var -eq 6 ]
 then
 echo -e "${BYellow}"
+git fetch
 git pull
 git add -A
 git commit -m "Auto push"
 git push
 echo -e "${co}"
-read -p "Press any key to resume ..."
+CmdPressForPass
 fi
 }
 
@@ -145,11 +161,91 @@ then
 echo -e "${BYellow}"
 git restore :/
 echo -e "${co}"
-read -p "Press any key to resume ..."
+CmdPressForPass
 fi
 }
 
+CmdGetBranch(){
+    echo ""
+    echo "---- BRANCH LIST ----"
+git branch --list
+echo "---------------------"
+echo ""
+}
 
+CmdBranchCreate(){
+    if [ $my_var -eq 8 ]
+then
+echo ""
+echo "tap the name of the branch for create"
+echo ""
+read my_var
+git branch $my_var
+CmdPressForPass
+fi
+}
+
+CmdBranchDelete(){
+    if [ $my_var -eq 11 ]
+then
+CmdGetBranch
+echo ""
+echo "tap the name of the branch for delete"
+echo ""
+read my_var
+git branch -d $my_var
+CmdPressForPass
+fi
+}
+
+CmdBranchForceDelete(){
+    if [ $my_var -eq 12 ]
+then
+CmdGetBranch
+echo ""
+echo "tap the name of the branch for delete"
+echo ""
+read my_var
+git branch -D $my_var
+CmdPressForPass
+fi
+}
+
+CmdBranchSwitch(){
+    if [ $my_var -eq 9 ]
+then
+CmdGetBranch
+echo ""
+echo "tap the name of the branch for switch"
+echo ""
+read my_var
+git checkout $my_var
+CmdPressForPass
+fi
+}
+
+CmdBranchMerge(){
+if [ $my_var -eq 10 ]
+then
+echo ""
+echo "tap the name of the branch for merge into your current branch"
+echo ""
+CmdGetBranch
+echo ""
+read my_var
+git fetch
+git pull
+git merge $my_var
+CmdPressForPass
+fi
+}
+
+CmdPressForPass(){
+echo ""
+echo ""
+echo ""
+read -p "Press any key to resume ..."
+}
 
 CmdTuto(){
 if [ $my_var -eq 9 ]
@@ -177,7 +273,7 @@ echo -e "${BYellow} After all changement, Status => commit  ${co}"
 echo ""
 echo ""
 echo ""
-read -p "Press any key to resume ..."
+CmdPressForPass
 fi
 }
 
@@ -203,6 +299,11 @@ CmdCommit
 CmdPush
 CmdAuto
 CmdRestore
+CmdBranchCreate
+CmdBranchDelete
+CmdBranchForceDelete
+CmdBranchSwitch
+CmdBranchMerge
 fi
 CmdTuto
 
